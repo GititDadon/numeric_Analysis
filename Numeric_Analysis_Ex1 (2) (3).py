@@ -3,9 +3,7 @@ def find_det(A):
     """"" Returns The Determinant Of A Matrix"""
     S=np.array(A)
     return np.linalg.det(S)
-def inverse_Matrix(A):
-    """"" Calculating An Inverse Of 4X4 Matrix According To Gauss Elimination Method Using Elementary Matrices.
-    """
+
 # Matrix multiplication 4X4#
 def calc_Matrix(A, B):
 	result = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
@@ -17,21 +15,6 @@ def calc_Matrix(A, B):
 				result[i][j] += A[i][k] * B[k][j]
 
 	return result
-
-
-# Matrix multiplication 4X1#
-def Multiply_Matrix(A, B):
-	result = [[0, ], [0, ], [0, ], [0, ]]
-	for i in range(len(A)):
-		# iterate through columns of Y
-		for j in range(len(B[0])):
-			# iterate through rows of Y
-			for k in range(len(A)):
-				result[i][j] += (A[i][k] * B[k][j])
-
-	return result
-
-
 # Inversion matrix calculation#
 def inverse_Matrix(A):
     """"" Calculating An Inverse Of 4X4 Matrix According To Gauss Elimination Method Using Elementary Matrices.
@@ -56,10 +39,7 @@ def inverse_Matrix(A):
 
 # Decomposition into L and U matrices#
 def LU_dec():
-	X = [[1,5, 1, 0],
-		 [1, 2, 0, 0],
-		 [0, 1, 1, 3],
-		 [0, 1, 0, 4]]
+	X = [[1,5, 1, 0],[1, 2, 0, 0],[0, 1, 1, 3],[0, 1, 0, 4]]
 	I=np.identity(4)
 	#Intialziation
 	L = calc_Matrix(I, I)
