@@ -1,10 +1,11 @@
 import numpy as np
+# Name: Gitit Dadon ID:212280911
 def find_det(A):
     """"" Returns The Determinant Of A Matrix"""
     S=np.array(A)
     return np.linalg.det(S)
 
-# Matrix multiplication 4X4#
+
 def calc_Matrix(A, B):
 	result = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
 	for i in range(len(A)):
@@ -15,7 +16,8 @@ def calc_Matrix(A, B):
 				result[i][j] += A[i][k] * B[k][j]
 
 	return result
-# Inversion matrix calculation#
+
+# Inversion matrix calculation
 def inverse_Matrix(A):
     """"" Calculating An Inverse Of 4X4 Matrix According To Gauss Elimination Method Using Elementary Matrices.
     """
@@ -39,7 +41,7 @@ def inverse_Matrix(A):
 
 # Decomposition into L and U matrices#
 def LU_dec():
-	X = [[1,5, 1, 0],[1, 2, 0, 0],[0, 1, 1, 3],[0, 1, 0, 4]]
+	X = [[1,5, 1, 0], [1, 2, 0, 0],[0, 1, 1, 3],[0, 1, 0, 4]]
 	I=np.identity(4)
 	#Intialziation
 	L = calc_Matrix(I, I)
@@ -64,7 +66,7 @@ def LU_Soloution(S):
 	m = calc_Matrix(U1, z)
 	print("The Soloution Of LU Linear Equations System Is :")
 	for i in m:
-		print(i)
+		print(i[0])
 A=[[1,0,4,-6],[2,5,0,3],[-1,2,3,5],[2,1,-2,3]]
 print("The Inverse Of The Matrix Is:",inverse_Matrix(A))
 print(LU_Soloution(A))
