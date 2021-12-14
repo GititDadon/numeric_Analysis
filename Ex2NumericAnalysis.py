@@ -1,4 +1,5 @@
 import numpy as np
+from termcolor import colored
 # Name: Gitit Dadon ID:212280911
 def find_det(A):
     """"" Returns The Determinant Of A Matrix"""
@@ -108,7 +109,7 @@ def subMat(A, B):
 
 def Gauss_Seidel_Method(A, n, B):
     """"" Gets  NxN Matrix and returns Calculation Approximation According To Gauss Seidel Method"""
-    L,U,d,k=LU_soloution(A,n)
+    L,U=LU_decomp(A,n)
     D=[[4,0,0],[0,10,0],[0,0,5]]
     # Diagnol
     Xr = [[0], [0], [0]]
@@ -118,13 +119,18 @@ def Gauss_Seidel_Method(A, n, B):
     m=negativeM(H) # -(L+D)^-1
     G=calcM1(m,U) #-(L+D)^-1 * U
     Xr1 = sumMat(calcM2(G, Xr), calcM1(H, B))# According to Formula
+    mat=[]
+    Xr2=[]
     while (abs(subMat(Xr1, Xr)) > 0.001):
         Xr=Xr1
         Xr1 = sumMat(calcM2(G, Xr), calcM2(H, B))
         for i in Xr1:
-            x=[abs(*j) for j in i]
-            print(x)
-    return Xr1
+            z=[np.absolute(i) for i in Xr1]
+        for x,j in enumerate(z):
+            print(j)
+            if x%3==2:
+                print("\t")
+    return
 
 def Yakobi_Method(mat, n, B):
     Xr = [[0], [0], [0]]
@@ -136,8 +142,13 @@ def Yakobi_Method(mat, n, B):
     while abs(subMat(Xr1, Xr)) > 0.001:
         Xr = Xr1
         Xr1 = sumMat(calcM2(G, Xr), calcM2(H, B))
-        print(Xr1)
-    return Xr1
+        for i in Xr1:
+            z = [np.absolute(i) for i in Xr1]
+        for x, j in enumerate(z):
+            print(j)
+            if x % 3 == 2:
+                print("\t")
+    return 
 
 
 def main():
@@ -150,8 +161,10 @@ def main():
     if not Is_Dominant(A, n):
         print("No Dominant Diagnol Was Found.")
     else:
+        print(colored("Yakobi_Method:","red",attrs=['bold']))
         Yakobi_Method(A, n, B)
-        Gauss_Seidel_Method(A, n, B)
+        print(colored("Gauss_Seidel_Method:","red",attrs=['bold']))
+        print(Gauss_Seidel_Method(A, n, B))
 
 
 main()
